@@ -1,0 +1,27 @@
+<?xml version = "1.0"?>
+<comanda idclient="bbbb" status="1">  
+   <article>
+      <codi>0001</codi>
+      <unitats>500</unitats>  
+      <unitatsServides>0</unitatsServides>
+      <preuUnitari>450.0</preuUnitari>
+      <status>0</status>
+   </article>   
+   <article>
+      <codi>0002</codi>
+      <unitats>350</unitats>
+      <unitatsServides>0</unitatsServides>
+      <preuUnitari>670.5</preuUnitari>
+      <status>0</status>      
+   </article>   
+   <article>
+      <codi>0003</codi>
+      <unitats>100</unitats>
+      <unitatsServides>0</unitatsServides>
+      <preuUnitari>510.9</preuUnitari>
+      <status>0</status>      
+   </article>
+</comanda>
+
+
+
