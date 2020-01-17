@@ -2,6 +2,7 @@ package DADES;
 
 import MODEL.LiniaPedido;
 import MODEL.Pedido;
+import java.util.Date;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,11 +30,15 @@ public class llegirXML {
 
 	String idCliente;
 	String codigoOrdenador;
+	int precio;
 	int idPedido;
 	int unidades;
 	char estado;
+	Date fechaAbertura;
+	String fechaFinalizacion;
 	float preuUnidad;
 	char estadoPedido;
+	
 	public llegirXML() {
 
 		try {
@@ -45,7 +50,7 @@ public class llegirXML {
 			NodeList nList = doc.getElementsByTagName("comanda");
 
 			System.out.println("----------------------------");
-
+			
 			for (int tempo = 0; tempo < nList.getLength(); tempo++) {
 
 				Node nNode = nList.item(tempo);
@@ -61,7 +66,9 @@ public class llegirXML {
 
 						if (nNode2.getNodeType() == Node.ELEMENT_NODE) {
 							Element eElement = (Element) nNode2;
-
+							fechaAbertura = new Date();
+							fechaFinalizacion = null;
+							precio = 0;
 							//System.out.println(
 								//	"Codi article: " + eElement.getElementsByTagName("codi").item(0).getTextContent());
 							codigoOrdenador = eElement.getElementsByTagName("codi").item(0).getTextContent();
@@ -73,25 +80,24 @@ public class llegirXML {
 							unidades = Integer
 									.parseInt(eElement.getElementsByTagName("unitats").item(0).getTextContent());
 
-							preuUnidad = Float
+							/*preuUnidad = Float
 									.parseFloat(eElement.getElementsByTagName("preuUnitat").item(0).getTextContent());
-
+							 */
 							liniaComanda
-									.add(new LiniaPedido((temp + 1)/2 , tempo + 1, codigoOrdenador, unidades, preuUnidad, estado));
+									.add(new LiniaPedido((temp + 1)/2 , tempo + 1, codigoOrdenador, unidades,/* preuUnidad,*/ estado));
 							
 						}
 					}
 					idPedido = tempo + 1;
 					
 				//	System.out.println(eElement2.getAttribute("idclient"));
-					//System.out.println(eElement2.getAttribute("statusComanda"));
+					//System.out.println(eElement2.getAttrib5awute("statusComanda"));
 					idCliente = eElement2.getAttribute("idclient");
-					
-					
+					idPedido = Integer.parseInt(eElement2.getAttribute("idComanda"));					
 					if (eElement2.getAttribute("statusComanda").equals("0")) {
 
-						comandes.add(new Pedido(eElement2.getAttribute("idclient"),
-								eElement2.getAttribute("statusComanda").charAt(0), liniaComanda));
+						comandes.add(new Pedido(idPedido,eElement2.getAttribute("idclient"),
+								eElement2.getAttribute("statusComanda").charAt(0),fechaAbertura,fechaFinalizacion,precio));
 						
 					}
 				}
@@ -134,8 +140,8 @@ public class llegirXML {
 
 	@Override
 	public String toString() {
-		return "llegirXML [comandes=" + comandes + ", idCliente=" + idCliente + ", codigoOrdenador=" + codigoOrdenador
-				+ ", idPedido=" + idPedido + ", unidades=" + unidades + ", estado=" + estado + ", preuUnidad="
+		return "llegirXML [idPedido=" + idPedido + ", idCliente=" + idCliente + ", codigoOrdenador=" + codigoOrdenador
+				+  ", unidades=" + unidades + ", estado=" + estado + ", preuUnidad="
 				+ preuUnidad + ", estadoPedido=" + estadoPedido + "]";
 	}
 

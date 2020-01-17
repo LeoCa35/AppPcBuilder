@@ -13,7 +13,7 @@ public class Principal {
 		llegirXML Lector1=new llegirXML();
 		//System.out.println(Comanda1.toString());
 		System.out.println("--------------------------------------------------------------------------------------------");
-		System.out.println(Lector1.getComandes());
+		System.out.println(Lector1.toString());
 		System.out.println("--------------------------------------------------------------------------------------------");
 		SQLClients clientes = new SQLClients();
 		//clientes.consultaClients("Clientes2");

@@ -8,18 +8,19 @@ public class Pedido{
 	String idCliente;
 	float precio;
 	Date fechaAbertura;
-	Date fechaFinalizacion;
+	String fechaFinalizacion;
 	char estado;
 	boolean pagoAceptado;
 	ArrayList <LiniaPedido> liniaspedido = new ArrayList<LiniaPedido>();
 	public ArrayList<Pedido> pedidos=new ArrayList<Pedido>();
 	
 	//Constructor
-	public Pedido(int idPedido,String idCliente, char estado ,ArrayList <LiniaPedido> liniaspedido) {	
+	public Pedido(int idPedido,String idCliente, char estado ,Date fechaAbertura, String fechaFinalizacion,int precio/*,ArrayList <LiniaPedido> liniaspedido*/) {	
 		
 		this.idPedido = idPedido;
 		this.idCliente = idCliente;
 		this.fechaAbertura = new Date();
+		this.fechaFinalizacion = fechaFinalizacion;
 		this.estado = estado;
 		this.liniaspedido = liniaspedido;
 		
@@ -37,27 +38,33 @@ public class Pedido{
 
 	}
 	
-	public Pedido(ArrayList<Pedido> pedidos) {
-		// TODO Auto-generated constructor stub
+	
+	
+	//Mas funciones
+	
+	public int getIdPedido() {
+		return idPedido;
 	}
 
-	//Getters
-	
-	/*
-	public ArrayList<LiniaPedido> getLiniaspedido() {
-		return liniaspedido;
-	}*/
-	
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public String getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
+
 	public float getPrecio() {
-		for (LiniaPedido liniaspedido  : liniaspedido) {
-			precio += liniaspedido.precioTotalLinia;
-		}
 		return precio;
 	}
-	
 
-	
-
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
 
 	public Date getFechaAbertura() {
 		return fechaAbertura;
@@ -67,12 +74,20 @@ public class Pedido{
 		this.fechaAbertura = fechaAbertura;
 	}
 
-	public Date getFechaFinalizacion() {
+	public String getFechaFinalizacion() {
 		return fechaFinalizacion;
 	}
 
-	public void setFechaFinalizacion(Date fechaFinalizacion) {
+	public void setFechaFinalizacion(String fechaFinalizacion) {
 		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
+	public char getEstado() {
+		return estado;
+	}
+
+	public void setEstado(char estado) {
+		this.estado = estado;
 	}
 
 	public boolean isPagoAceptado() {
@@ -99,26 +114,6 @@ public class Pedido{
 		this.pedidos = pedidos;
 	}
 
-	public int getIdPedido() {
-		return idPedido;
-	}
-
-	public char getEstado() {
-		return estado;
-	}
-
-	public void setPrecio(float precio) {
-		this.precio = precio;
-	}
-
-	//Setters
-
-	public void setIdCliente(String idCliente) {
-		this.idCliente = idCliente;
-	}
-	
-	//Mas funciones
-	
 	public void consultaEstadoPedido(int idPedido) {
 		//return this.estado;
 	}

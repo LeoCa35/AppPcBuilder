@@ -31,7 +31,9 @@ public class Cliente{
 		this.cp = cp;
 	}
 	
-	
+	public Cliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
 	//Getters i setters
 	
 	

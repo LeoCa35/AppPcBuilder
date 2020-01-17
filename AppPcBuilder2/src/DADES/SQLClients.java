@@ -140,9 +140,9 @@ public class SQLClients {
 	 * @param idCliente
 	 * @throws SQLException
 	 */
-	public void deleteClients(String idCliente) throws SQLException {
+	public void deleteClients(Cliente clientes) throws SQLException {
 
-		String deleteRow = "Delete FROM Clientes2 WHERE idCliente = '" + idCliente + "'";
+		String deleteRow = "Delete FROM Clientes2 WHERE idCliente = '" + clientes.getIdCliente() + "'";
 
 		try {
 

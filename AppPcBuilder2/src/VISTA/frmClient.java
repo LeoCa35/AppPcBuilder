@@ -48,13 +48,17 @@ public class frmClient extends JDialog {
 	private JTextField textField_idCliente;
 	private JTextField textField_email;
 	private JTextField textField_direccion;
-	private JTextField textField_provincia;
+	private JTextField textField_provincia ;
 	private JTextField textField_cliente;
 	private JTextField textField_telefono;
 	private JTextField textField_municipio;
 	private JTextField textField_cp;
 	SQLClients con = new SQLClients();
 	
+	JButton btnNew;
+	JButton btnDelete;
+	JButton btnEdit;
+
 	private DefaultTableModel model = new DefaultTableModel();
 	JScrollPane scrollPane = new JScrollPane();
 	private JTextField textField_iban;
@@ -70,7 +74,6 @@ public class frmClient extends JDialog {
 	String codigo;
 	String estado = "";
 	boolean borrarDato;
-	JButton btnDelete;
 
 	/**
 	 * Launch the application.
@@ -90,13 +93,14 @@ public class frmClient extends JDialog {
 	 * Create the dialog.3
 	 */
 	public frmClient() {
-
+		btnEdit = new JButton("EDITAR");
+		btnNew = new JButton("NEW");
+		btnDelete = new JButton("BORRAR");
 		setBounds(100, 100, 757, 480);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 
-		//JScrollPane scrollPane = new JScrollPane();
-		
+		// JScrollPane scrollPane = new JScrollPane();
 
 		JLabel lblCif = new JLabel("CIF");
 
@@ -179,51 +183,45 @@ public class frmClient extends JDialog {
 																Short.MAX_VALUE)))
 										.addComponent(rdbtnDeudor))))
 						.addContainerGap()));
-		gl_contentPanel
-				.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_contentPanel.createSequentialGroup().addGap(22)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblCif)
-										.addComponent(textField_idCliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_3).addComponent(textField_cliente,
-												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
+		gl_contentPanel.setVerticalGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPanel.createSequentialGroup().addGap(22)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblCif)
+								.addComponent(textField_idCliente, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_3).addComponent(textField_cliente, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel)
+								.addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_4).addComponent(textField_telefono,
+										GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel_1)
+								.addComponent(textField_direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_5).addComponent(textField_municipio,
+										GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE).addComponent(lblNewLabel_2)
+								.addComponent(textField_provincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_6).addComponent(textField_cp, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblNewLabel)
-										.addComponent(textField_email, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_4).addComponent(textField_telefono,
+										.addComponent(rdbtnDeudor).addComponent(textField_iban,
 												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblNewLabel_1)
-										.addComponent(textField_direccion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_5).addComponent(textField_municipio,
-												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(lblNewLabel_2)
-										.addComponent(textField_provincia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_6).addComponent(textField_cp,
-												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-										.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
-												.addComponent(rdbtnDeudor).addComponent(textField_iban,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE))
-										.addComponent(lblIban))
-								.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
-								.addContainerGap()));
+								.addComponent(lblIban))
+						.addPreferredGap(ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 235, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
 		table = new JTable();
-		
+
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		scrollPane.setViewportView(table);
@@ -231,102 +229,161 @@ public class frmClient extends JDialog {
 
 		{
 			
-			
+			btnDelete.setEnabled(false);
+			btnEdit.setEnabled(false);
+
+			textField_idCliente.setEnabled(false);
+			textField_cliente.setEnabled(false);
+			textField_email.setEnabled(false);
+			textField_telefono.setEnabled(false);
+			textField_direccion.setEnabled(false);
+			textField_municipio.setEnabled(false);
+			textField_provincia.setEnabled(false);
+			textField_cp.setEnabled(false);
+			textField_iban.setEnabled(false);
+
 			JPanel buttonPane = new JPanel();
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
-			JButton btnDelete = new JButton("DELETE");
-			btnDelete.setEnabled(false);
+			/**
+			 * BOTON BORRAR
+			 */
 			btnDelete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 
 					int fila = table.getSelectedRow();
 					System.out.println(fila);
-					codigo = (String) model.getValueAt(table.getSelectedRow(), 0);
+					idCliente = (String) model.getValueAt(table.getSelectedRow(), 0);
 					System.out.println(codigo);
-										
+
 					if (fila >= 0) {
-					
+						
 					} else {
 						JOptionPane.showMessageDialog(null, "Selecioname una fila");
 					}
 					estado = "delete";
-					
+					try {
+						int dialogbutton = 0;
+						int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro que quieres borrar este registro? ","Warning",dialogbutton );
+						if (dialogResult == JOptionPane.YES_OPTION) {
+							con.deleteClients(new Cliente(idCliente));
+						}
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					taulas();
 				}
 			});
 
 			btnDelete.setActionCommand("OK");
 
-			JButton btnNew = new JButton("NEW");
-			
+			System.out.println("NEW");
+			/**
+			 * BOTON NUEVO
+			 */
 			btnNew.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					idCliente = textField_idCliente.getText();
-					cliente = textField_cliente.getText();
-					email = textField_email.getText();
-					telefono = textField_telefono.getText();
-					direccion = textField_direccion.getText();
-					municipio = textField_municipio.getText();
-					provincia = textField_provincia.getText();
-					cp = textField_cp.getText();
-					iban = textField_iban.getText();
-					estado = "new";
+					textField_idCliente.setEnabled(true);
+					textField_cliente.setEnabled(true);
+					textField_email.setEnabled(true);
+					textField_telefono.setEnabled(true);
+					textField_direccion.setEnabled(true);
+					textField_municipio.setEnabled(true);
+					textField_provincia.setEnabled(true);
+					textField_cp.setEnabled(true);
+					textField_iban.setEnabled(true);
 					
+					textField_idCliente.requestFocus();
+					
+					textField_idCliente.setText("");
+					textField_cliente.setText("");
+					textField_email.setText("");
+					textField_telefono.setText("");
+					textField_direccion.setText("");
+					textField_municipio.setText("");
+					textField_provincia.setText("");
+					textField_cp.setText("");
+					textField_iban.setText("");
+					
+					estado = "new";
+					btnNew.setEnabled(false);
 				}
 			});
 			btnNew.setActionCommand("OK");
 
-			JButton btnEdit = new JButton("EDIT");
-			//btnEdit.setEnabled(false);
+			/**
+			 * BOTON EDITAR
+			 */
 			btnEdit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					textField_idCliente.setText(idCliente);
-					textField_cliente.setText(cliente);
-					textField_email.setText(email);
-					textField_telefono.setText(telefono);
-					textField_direccion.setText(direccion);
-					textField_municipio.setText(municipio);
-					textField_provincia.setText(provincia);
-					textField_cp.setText(cp);
-					textField_iban.setText(iban);
+					textField_idCliente.setEnabled(false);
+					textField_cliente.setEnabled(true);
+					textField_email.setEnabled(true);
+					textField_telefono.setEnabled(true);
+					textField_direccion.setEnabled(true);
+					textField_municipio.setEnabled(true);
+					textField_provincia.setEnabled(true);
+					textField_cp.setEnabled(true);
+					textField_iban.setEnabled(true);
 					estado = "edit";
-					
 				}
 			});
 			btnEdit.setActionCommand("OK");
-
-			JButton btnSave = new JButton("SAVE");
+			/**
+			 * BOTON GUARDAR
+			 */
+			JButton btnSave = new JButton("GUARDAR");
 			btnSave.addActionListener(new ActionListener() {
 				// ACTION BOTON
 				// SAVE----------------------------------------------------------------------
 				public void actionPerformed(ActionEvent arg0) {
-						try {
-							String idClienteUpdate = textField_idCliente.getText().toString();
-							String clienteUpdate = textField_cliente.getText().toString();
-							String emailUpdate = textField_email.getText().toString();
-							String telefonoUpdate = textField_telefono.getText().toString();
-							String direccionUpdate = textField_direccion.getText().toString();
-							String municipioUpdate = textField_municipio.getText().toString();
-							String provinciaUpdate = textField_provincia.getText().toString();
-							String cpUpdate = textField_cp.getText().toString();
-							String ibanUpdate = textField_iban.getText().toString();
-							
-							if (estado == "delete") {
-								con.deleteClients(codigo);								
-							}else if (estado == "new") {
-								con.insertaClients(new Cliente(idCliente, cliente, email, telefono, direccion, municipio, provincia, cp, iban));								
-							}else if (estado == "edit") {
-								con.updateClients(new Cliente(idClienteUpdate, clienteUpdate, emailUpdate, telefonoUpdate, direccionUpdate, municipioUpdate, provinciaUpdate, cpUpdate, ibanUpdate));								
-							}
-								taulas();
-								
-							
-							
-						} catch (SQLException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+					try {
+						String idClienteUpdate = textField_idCliente.getText().toString();
+						String clienteUpdate = textField_cliente.getText().toString();
+						String emailUpdate = textField_email.getText().toString();
+						String telefonoUpdate = textField_telefono.getText().toString();
+						String direccionUpdate = textField_direccion.getText().toString();
+						String municipioUpdate = textField_municipio.getText().toString();
+						String provinciaUpdate = textField_provincia.getText().toString();
+						String cpUpdate = textField_cp.getText().toString();
+						String ibanUpdate = textField_iban.getText().toString();
+
+												
+						if (estado == "new") {
+							con.insertaClients(new Cliente(idClienteUpdate, clienteUpdate, emailUpdate, telefonoUpdate,
+									direccionUpdate, municipioUpdate, provinciaUpdate, cpUpdate, ibanUpdate));
+						} else if (estado == "edit") {
+							con.updateClients(new Cliente(idClienteUpdate, clienteUpdate, emailUpdate, telefonoUpdate,
+									direccionUpdate, municipioUpdate, provinciaUpdate, cpUpdate, ibanUpdate));
 						}
-				
+						taulas();
+						btnNew.setEnabled(true);
+						textField_idCliente.setText("");
+						textField_cliente.setText("");
+						textField_email.setText("");
+						textField_telefono.setText("");
+						textField_direccion.setText("");
+						textField_municipio.setText("");
+						textField_provincia.setText("");
+						textField_cp.setText("");
+						textField_iban.setText("");
+
+						textField_idCliente.setEnabled(false);
+						textField_cliente.setEnabled(false);
+						textField_email.setEnabled(false);
+						textField_telefono.setEnabled(false);
+						textField_direccion.setEnabled(false);
+						textField_municipio.setEnabled(false);
+						textField_provincia.setEnabled(false);
+						textField_cp.setEnabled(false);
+						textField_iban.setEnabled(false);
+						btnEdit.setEnabled(false);
+						btnDelete.setEnabled(false);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 
 			});
@@ -339,9 +396,8 @@ public class frmClient extends JDialog {
 							.addComponent(btnEdit, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(btnNew, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE).addGap(18)
-							.addComponent(btnDelete).addPreferredGap(ComponentPlacement.RELATED, 378, Short.MAX_VALUE)
-							.addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap()));
+							.addComponent(btnDelete).addPreferredGap(ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
+							.addComponent(btnSave).addContainerGap()));
 			gl_buttonPane.setVerticalGroup(gl_buttonPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_buttonPane.createSequentialGroup().addGap(5)
 							.addGroup(gl_buttonPane.createParallelGroup(Alignment.BASELINE).addComponent(btnNew)
@@ -367,7 +423,6 @@ public class frmClient extends JDialog {
 		model.addColumn("IBAN");
 		model.addColumn("Deudor");
 
-		
 		table.setModel(model);
 
 		try {
@@ -378,33 +433,48 @@ public class frmClient extends JDialog {
 						cliente.getCp(), cliente.getIban(), cliente.getDeudor() });
 
 			}
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		table.addMouseListener(new MouseAdapter() {
-			
+
 			public void mouseClicked(MouseEvent e) {
-			
-				//btnEdit.setEnabled(true);
-				System.out.println("bro aqui llega");
-				idCliente = (String) model.getValueAt(table.getSelectedRow(), 0);
-				System.out.println(idCliente);
-				cliente = (String) model.getValueAt(table.getSelectedRow(), 1);
-				email = (String) model.getValueAt(table.getSelectedRow(), 2);
-				telefono = (String) model.getValueAt(table.getSelectedRow(), 3);
-				direccion = (String) model.getValueAt(table.getSelectedRow(), 4);
-				municipio = (String) model.getValueAt(table.getSelectedRow(), 5);
-				provincia = (String) model.getValueAt(table.getSelectedRow(), 6);
-				cp = (String) model.getValueAt(table.getSelectedRow(), 7);
-				iban = (String) model.getValueAt(table.getSelectedRow(), 8);
-				
-				
-				
+
+				if (e.getClickCount() == 1) {
+
+					System.out.println("bro aqui llega");
+					idCliente = (String) model.getValueAt(table.getSelectedRow(), 0);
+					System.out.println(idCliente);
+					cliente = (String) model.getValueAt(table.getSelectedRow(), 1);
+					email = (String) model.getValueAt(table.getSelectedRow(), 2);
+					telefono = (String) model.getValueAt(table.getSelectedRow(), 3);
+					direccion = (String) model.getValueAt(table.getSelectedRow(), 4);
+					municipio = (String) model.getValueAt(table.getSelectedRow(), 5);
+					provincia = (String) model.getValueAt(table.getSelectedRow(), 6);
+					cp = (String) model.getValueAt(table.getSelectedRow(), 7);
+					iban = (String) model.getValueAt(table.getSelectedRow(), 8);
+
+					textField_idCliente.setText(idCliente);
+					textField_cliente.setText(cliente);
+					textField_email.setText(email);
+					textField_telefono.setText(telefono);
+					textField_direccion.setText(direccion);
+					textField_municipio.setText(municipio);
+					textField_provincia.setText(provincia);
+					textField_cp.setText(cp);
+					textField_iban.setText(iban);
+
+					btnEdit.setEnabled(true);
+					btnDelete.setEnabled(true);
+					btnNew.setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecioname una fila");
+				}
 			}
-	});
+		});
 		
 		
+
 	}
 }

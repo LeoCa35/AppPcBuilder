@@ -1,5 +1,5 @@
 package MODEL;
-public class LiniaPedido{
+public class LiniaPedido2{
 	
 	//Atributs 
 	int idLiniaPedido;
@@ -12,7 +12,7 @@ public class LiniaPedido{
 	float precioTotalLinia;
 	
 	//Constructor
-	public LiniaPedido(int idLiniaPedido, int idPedido,String idOrdenador, int unidadesPedidas/*, float precioUnidad*/, char estado ) {
+	public LiniaPedido2(int idLiniaPedido, int idPedido,String idOrdenador, int unidadesPedidas, float precioUnidad, char estado ) {
 		this.idLiniaPedido=idLiniaPedido;
 		this.idPedido = "1";
 		this.idOrdenador = idOrdenador;
