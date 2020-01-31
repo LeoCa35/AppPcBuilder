@@ -1,12 +1,12 @@
 <?xml version = "1.0"?>
 <comandes>
-	<comanda idclient="aaaa" statusComanda='0' idcomanda="1">
+	<comanda idclient="aaaa" statusComanda="0" idcomanda="1">
 
 		<article>
 
 			<codi>0001</codi>
 
-			<unitats>500</unitats>
+			<unitatsDemanades>500</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 
@@ -16,9 +16,9 @@
 
 		<article>
 
-			<codi>0002</codi>
+			<codi>0022</codi>
 
-			<unitats>200</unitats>
+			<unitatsDemanades>200</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 
@@ -28,9 +28,9 @@
 
 		<article>
 
-			<codi>0003</codi>
+			<codi>0035</codi>
 
-			<unitats>100</unitats>
+			<unitatsDemanades>100</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 
@@ -39,13 +39,13 @@
 		</article>
 
 	</comanda>
-	<comanda idclient="bbbb" statusComanda='0' idcomanda="2">
+	<comanda idclient="bbbb" statusComanda="0" idcomanda="2">
 
 		<article>
 
-			<codi>0003</codi>
+			<codi>0005</codi>
 
-			<unitats>100</unitats>
+			<unitatsDemanades>120</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 
@@ -57,7 +57,7 @@
 
 			<codi>0020</codi>
 
-			<unitats>50</unitats>
+			<unitatsDemanades>50</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 
@@ -69,7 +69,7 @@
 
 			<codi>0099</codi>
 
-			<unitats>3</unitats>
+			<unitatsDemanades>20</unitatsDemanades>
 
 			<unitatsServides>0</unitatsServides>
 

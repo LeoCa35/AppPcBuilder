@@ -17,13 +17,13 @@ import MODEL.Pedido;
 import MODEL.Cliente;
 import MODEL.LiniaPedido;
 
-public class SQLPedido {
-	public ArrayList<Pedido> arraypedido = new ArrayList<Pedido>();
-	String nombreTabla, fechaApertura;
-	int idPedido, precio;
-	String idCliente, fechaFinalizacion;
+public class SQLLiniaPedido {
+	public ArrayList<LiniaPedido> arrayLiniaPedido = new ArrayList<LiniaPedido>();
+	String nombreTabla, estado;
+	int idPedido,idLiniaPedido,idOrdenador,unidadesServidas,unidadesPedidas, precio;
 	
-	char estado;
+	
+	
 	
 	Connection c = null;
 
@@ -38,7 +38,7 @@ public class SQLPedido {
 			c = DriverManager.getConnection("jdbc:sqlite:/home/leoca35/Baixades/MONTA.db");
 
 			System.out.println("Exito al conectar con base de datos");
-			
+
 		} catch (Exception e) {
 
 			System.out.println("Error al conectar con base de datos");
@@ -47,15 +47,19 @@ public class SQLPedido {
 		return c;
 
 	}
-	public void insertaPedidos(Pedido pedido) throws SQLException {
+	
+	
+	
+	public void insertaPedidos(LiniaPedido liniaPedido) throws SQLException {
 
 		// Insertamos de los campos de la tabla los valores, sacandolos del objeto
-		//Pedido.java
-		String sqlInsert = "INSERT INTO Pedido(idPedido, idCliente, dataObertura, dataTancament, estat,preu) "
+		// Cliente.java
+		
+		String sqlInsert = "INSERT INTO LiniaPedido(idLinia, idPedido, idOrdenador, unidadesPedidas, unidadesServidas, estado) "
 
-				+ "VALUES(" + "\"" + pedido.getIdPedido() + "\"" + "," + "\"" + pedido.getIdCliente() + "\"" + ","
-				+ "\"" + pedido.getFechaApertura() + "\"" + "," + "\"" + pedido.getFechaFinalizacion() + "\"" + "," + "\""
-				+ pedido.getEstado() + "\"" + "," + "\"" + pedido.getPrecio() + "\"" + ");";
+				+ "VALUES(" + "\"" + liniaPedido.getIdLinia() + "\"" + "," + "\"" + liniaPedido.getIdPedido() + "\"" + ","
+				+ "\"" + liniaPedido.getIdOrdenador() + "\"" + "," + "\"" + liniaPedido.getUnidadesPedidas() + "\"" + "," + "\""
+				+ liniaPedido.getUnidadesServidas() + "\"" + "," + "\"" + liniaPedido.getEstado()+ "\"" + ");";
 
 		try {
 
@@ -69,16 +73,16 @@ public class SQLPedido {
 
 			c.close();
 
-			System.out.println("Datos insertadoss");
+			System.out.println("Datos insertados LiniaP");
 
 		} catch (Exception e) {
 
-			System.out.println("Error al insertar datos en la tabla");
+			System.out.println("Error al insertar datos en la tabla LiniaPedido");
 
 		}
-		
+
 	}
-	public ArrayList<Pedido> guardarObjeto(String nombreTabla) throws SQLException {
+	public ArrayList<LiniaPedido> guardarObjeto(String nombreTabla) throws SQLException {
 
 		conectar();
 
@@ -91,9 +95,9 @@ public class SQLPedido {
 			ResultSet rs = sentencia.executeQuery(consultaSql);
 
 			while (rs.next()) {
-				arraypedido
-						.add(new Pedido(rs.getInt("idPedido"), rs.getString("idCliente"), rs.getString("dataObertura"),
-								rs.getString("dataTancament"),rs.getString("estat"),  rs.getInt("preu")));
+				arrayLiniaPedido
+						.add(new LiniaPedido(rs.getInt("idLinia"), rs.getInt("idPedido"), rs.getInt("idOrdenador"),rs.getInt("unidadesPedidas")
+								,rs.getInt("unidadesServidas"),  rs.getString("estado")));
 							
 			}
 
@@ -105,6 +109,6 @@ public class SQLPedido {
 			e.printStackTrace();
 			System.out.println("Fallo al recuperar datos");
 		}
-		return arraypedido;
+		return arrayLiniaPedido;
 	}
 }

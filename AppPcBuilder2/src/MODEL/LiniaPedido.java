@@ -1,55 +1,62 @@
 package MODEL;
+import MODEL.Pedido;
+
 public class LiniaPedido{
 	
 	//Atributs 
-	int idLiniaPedido;
-	String idPedido;
-	String idOrdenador;
+	int idLinia;
+	int idPedido;
+	int idOrdenador;
 	int unidadesPedidas;
 	int unidadesServidas;
-	char estado;
-	float precioUnidad;
-	float precioTotalLinia;
+	String estado;
 	
 	//Constructor
-	public LiniaPedido(int idLiniaPedido, int idPedido,String idOrdenador, int unidadesPedidas/*, float precioUnidad*/, char estado ) {
-		this.idLiniaPedido=idLiniaPedido;
-		this.idPedido = "1";
+	public LiniaPedido(int idLinia, int idPedido,int idOrdenador, int unidadesPedidas,int unidadesServidas, String estado ) {
+		this.idLinia=idLinia;
+		this.idPedido = idPedido;
 		this.idOrdenador = idOrdenador;
 		this.unidadesPedidas = unidadesPedidas;
 		this.unidadesServidas = unidadesServidas;
-		this.precioUnidad = precioUnidad;
-		this.estado='0';
-		this.precioTotalLinia = unidadesPedidas*precioUnidad;
+		this.estado=estado;
+		//this.precioTotalLinia = unidadesPedidas*precioUnidad;
 	}
+	//Constructor
+	/*public LiniaPedido(int idOrdenador, int unidadesPedidas,int unidadesServidas, String estado ) {
+		
+		this.idOrdenador = idOrdenador;
+		this.unidadesPedidas = unidadesPedidas;
+		this.unidadesServidas = unidadesServidas;
+		this.estado=estado;
+	}*/
 	
 	
-	public int getIdLiniaPedido() {
-		return idLiniaPedido;
+	public int getIdLinia() {
+		return idLinia;
 	}
 
 
-	public void setIdLiniaPedido(int idLiniaPedido) {
-		this.idLiniaPedido = idLiniaPedido;
+	public void setIdLinia(int idLinia) {
+		this.idLinia = idLinia;
 	}
 
 
-	public String getIdPedido() {
+	public int getIdPedido() {
 		return idPedido;
 	}
 
 
-	public void setIdPedido(String idPedido) {
+	public void setIdPedido(int idPedido) {
 		this.idPedido = idPedido;
 	}
 
 
-	public String getIdOrdenador() {
+	public int getIdOrdenador() {
 		return idOrdenador;
 	}
 
 
-	public void setIdOrdenador(String idOrdenador) {
+	public void setIdOrdenador(int idOrdenador) {
 		this.idOrdenador = idOrdenador;
 	}
 
@@ -75,11 +82,11 @@ public class LiniaPedido{
 
 
 	//Getters
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 	//Setters
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	//Mas Funciones
@@ -104,9 +111,9 @@ public class LiniaPedido{
 
 	@Override
 	public String toString() {
-		return "\nLiniaPedido [idLiniaPedido=" + idLiniaPedido + ", idPedido=" + idPedido + ", idOrdenador=" + idOrdenador
+		return "\nLiniaPedido [idLinia=" + idLinia + ", idPedido=" + idPedido + ", idOrdenador=" + idOrdenador
 				+ ", unidadesPedidas=" + unidadesPedidas + ", unidadesServidas=" + unidadesServidas + ", estado="
-				+ estado + ", precioUnidad=" + precioUnidad + ", precioTotalLinia=" + precioTotalLinia + "]";
+				+ estado + "]";
 	}
 
 

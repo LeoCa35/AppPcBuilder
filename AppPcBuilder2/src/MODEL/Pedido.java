@@ -1,34 +1,53 @@
 package MODEL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+
 public class Pedido{
 	
 	//Atributos
 	int idPedido;
 	String idCliente;
 	float precio;
-	Date fechaAbertura;
+	String fechaApertura;
 	String fechaFinalizacion;
-	char estado;
+	String  estado;
+	SimpleDateFormat fecha = new SimpleDateFormat("yyyy/MM/dd");
 	boolean pagoAceptado;
 	ArrayList <LiniaPedido> liniaspedido = new ArrayList<LiniaPedido>();
 	public ArrayList<Pedido> pedidos=new ArrayList<Pedido>();
 	
 	//Constructor
-	public Pedido(int idPedido,String idCliente, char estado ,Date fechaAbertura, String fechaFinalizacion,int precio/*,ArrayList <LiniaPedido> liniaspedido*/) {	
+	
+	public Pedido(int idPedido,String idCliente, String fechaApertura, String fechaFinalizacion,String estado ,int precio) {	
 		
 		this.idPedido = idPedido;
 		this.idCliente = idCliente;
-		this.fechaAbertura = new Date();
+		this.fechaApertura = fechaApertura;
 		this.fechaFinalizacion = fechaFinalizacion;
 		this.estado = estado;
-		this.liniaspedido = liniaspedido;
+		this.precio = precio;
 		
 		
 	}
 	
 	//Constructor
-	public Pedido(String idCliente, char estado, ArrayList<LiniaPedido> liniaspedido) {
+	public Pedido(int idPedido,String idCliente, String estado ) {	
+		
+		this.idPedido = idPedido;
+		this.idCliente = idCliente;
+		this.fechaApertura = fecha.format(new Date());
+		this.fechaFinalizacion = null;
+		this.estado = estado;
+
+		
+		
+		
+	}
+	
+	//Constructor
+	/*public Pedido(String idCliente, char estado, ArrayList<LiniaPedido> liniaspedido) {
 
 		this.idPedido = idPedido;
 		this.idCliente = idCliente;
@@ -36,7 +55,7 @@ public class Pedido{
 		this.estado = estado;
 		this.liniaspedido = liniaspedido;
 
-	}
+	}*/
 	
 	
 	
@@ -66,12 +85,12 @@ public class Pedido{
 		this.precio = precio;
 	}
 
-	public Date getFechaAbertura() {
-		return fechaAbertura;
+	public String getFechaApertura() {
+		return fechaApertura;
 	}
 
-	public void setFechaAbertura(Date fechaAbertura) {
-		this.fechaAbertura = fechaAbertura;
+	public void setFechaApertura(String fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
 
 	public String getFechaFinalizacion() {
@@ -82,11 +101,11 @@ public class Pedido{
 		this.fechaFinalizacion = fechaFinalizacion;
 	}
 
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
@@ -137,8 +156,8 @@ public class Pedido{
 
 	@Override
 	public String toString() {
-		return "\nPedido [idPedido=" + idPedido + ", idCliente=" + idCliente + ", precio=" + getPrecio() + ", fechaAbertura="
-				+ fechaAbertura + ", fechaFinalizacion=" + fechaFinalizacion + ", estado=" + estado + ", liniaspedido=" + liniaspedido + "]";
+		return "\nPedido [idPedido=" + idPedido + ", idCliente=" + idCliente + ", precio=" + getPrecio() + ", fechaApertura="
+				+ fechaApertura + ", fechaFinalizacion=" + fechaFinalizacion + ", estado=" + estado +  "]";
 	}
 	/*
 	 * @Override

@@ -38,7 +38,7 @@ public class SQLClients {
 			c = DriverManager.getConnection("jdbc:sqlite:/home/leoca35/Baixades/MONTA.db");
 
 			System.out.println("Exito al conectar con base de datos");
-
+			
 		} catch (Exception e) {
 
 			System.out.println("Error al conectar con base de datos");
@@ -165,6 +165,12 @@ public class SQLClients {
 		}
 
 	}
+	/**
+	 * Devolvemos array cogida de la base de datos
+	 * @param nombreTabla
+	 * @return
+	 * @throws SQLException
+	 */
 
 	public ArrayList<Cliente> guardarObjeto(String nombreTabla) throws SQLException {
 
